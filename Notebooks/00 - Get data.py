@@ -3,76 +3,28 @@
 # MAGIC 
 # MAGIC ## Get Data
 # MAGIC 
-# MAGIC 
-# MAGIC ### Using the Data UI:
-# MAGIC 
 # MAGIC 1. Download the [data csv file](https://github.com/himanshuguptadb/Telematics_Datagen/tree/master/Data) from github
-# MAGIC 2. Upload data to DBFS in your workspace:
-# MAGIC   * In production, it is highly recommended to upload the data to an adls location and mount it to the workspace. 
-# MAGIC   * For simplicity and demo purpose, we will go simple & use the UI. Please refer to [the documentation](https://docs.microsoft.com/en-us/azure/databricks/data/data) for more details on how to upload data to dbfs. 
+# MAGIC 
+# MAGIC   * In production, it is highly recommended to upload the data to an adls location and use it in workspace. 
+# MAGIC   * For simplicity and demo purpose, we will go simple & use the UI. Please refer to below steps to load data and create tables.
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Using command line
-
-# COMMAND ----------
-
-# DBTITLE 1,Create a DBFS data location 
-#%fs mkdirs /FileStore/<Put Team Name Here>/telematics_data
-
-# COMMAND ----------
-
-# DBTITLE 1,Upload files to the DBFS data location
-# MAGIC %md
+# MAGIC ## Import Data using UI
 # MAGIC 
-# MAGIC Please refer to [the documentation](https://docs.microsoft.com/en-us/azure/databricks/data/data) for more details on how to upload data to dbfs
-
-# COMMAND ----------
-
-# DBTITLE 1,Check if the file exists
-# %fs ls /FileStore/<Put Team Name Here>/telematics_data/
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC 
-# MAGIC ### Read data and store it in a delta table
-# MAGIC 
-# MAGIC Team database is already created with required privilleges to create table
-# MAGIC 
-# MAGIC Sample table creation script
-# MAGIC 
-# MAGIC product_df = spark.read.csv("/FileStore/<Put Team Name Here>/telematics_data/product.csv", header="true", inferSchema="true")  
-# MAGIC product_df.write.format("delta").mode("overwrite").saveAsTable("catalog_name.database_name.table_name")
-
-# COMMAND ----------
-
-# DBTITLE 1,Create product table
-
-
-# COMMAND ----------
-
-# DBTITLE 1,Create events table
-
-
-# COMMAND ----------
-
-# DBTITLE 1,Create product failure table
-
-
-# COMMAND ----------
-
-# DBTITLE 1,Create weather table
-
-
-# COMMAND ----------
-
-# DBTITLE 1,Check table is created
-# MAGIC %sql
-# MAGIC use catalog <Catalog Name>;
-# MAGIC 
-# MAGIC select count(*) from <database name>.<table name>
+# MAGIC 1. Click <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/data-icon.png?raw=true" width="30"> **Data** in the sidebar.
+# MAGIC 2. Click on **Add** in the top right corner and from the dropdown select **Add Data**.<br>  
+# MAGIC <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/Add_Data.png?raw=true" width="400">
+# MAGIC 3. Databricks provide multiple Native integrations to load for various sources. For this excercise, we will use **Upload data**. <br>
+# MAGIC <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/Add_Data_Options.png?raw=true" width="1300">
+# MAGIC 4. Click on **browse data** to open file browser window. Navigatge to the correct folder to load the files. Pick the file you want to create the table for. <br>
+# MAGIC <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/Upload_Data.png?raw=true" width="500">
+# MAGIC 5. Complete the table creation process by providing the **catalog name*, **schema name** and **table name**. Column names are prepopulated based on the header row in the csv. <br>
+# MAGIC <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/Select_catalog_schema.png?raw=true" width="1400">
+# MAGIC 6. Click on **create table** button in the botton left corner of your screen.<br>
+# MAGIC <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/Create_Table.png?raw=true" width="1400">
+# MAGIC 7. Table creation process is complete. You can review the table details in the data explorer window by click on <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/data-icon.png?raw=true" width="30">
 
 # COMMAND ----------
 
