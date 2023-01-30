@@ -6,7 +6,7 @@
 # MAGIC 
 # MAGIC ### Using the Data UI:
 # MAGIC 
-# MAGIC 1. Download the [data csv file](https://github.com/IBM/telco-customer-churn-on-icp4d/blob/master/data/Telco-Customer-Churn.csv) from github
+# MAGIC 1. Download the [data csv file](https://github.com/himanshuguptadb/Telematics_Datagen/tree/master/Data) from github
 # MAGIC 2. Upload data to DBFS in your workspace:
 # MAGIC   * In production, it is highly recommended to upload the data to an adls location and mount it to the workspace. 
 # MAGIC   * For simplicity and demo purpose, we will go simple & use the UI. Please refer to [the documentation](https://docs.microsoft.com/en-us/azure/databricks/data/data) for more details on how to upload data to dbfs. 
