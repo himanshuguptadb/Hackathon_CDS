@@ -1,50 +1,28 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Exploratory Data Analysis & Feature Engineering (Need to Update)
+# MAGIC # Exploratory Data Analysis
 # MAGIC 
+# MAGIC The goal is to produce a service that can predict in real-time whether a engine will fail.
 # MAGIC 
-# MAGIC The goal is to produce a service that can predict in real-time whether a customer churns.
+# MAGIC Our first step is to analyze the data, to understand data quality issues and what kind of features we will need to create.
 # MAGIC 
-# MAGIC Our first step is to analyze the data and build the features we'll use to train our model. Let's see how this can be done.
-# MAGIC 
-# MAGIC <img src="https://github.com/aminenouira-db/images/blob/main/mlops-end2end-flow-1.png?raw=true" width="1200">
+# MAGIC <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/ML_E2E_Pipeline1.png?raw=true" width="1200">
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC 
-# MAGIC ## Using Bamboolib API on Apache Spark (Need to Update) 
+# MAGIC ## Using Bamboolib API on Apache Spark
 # MAGIC ### All the insights. None of the code. 
-# MAGIC Using Databricks, Data Scientist don't have to learn a new API to analyse data and deploy new model in production
+# MAGIC Bamboolib is a UI component that allows for no-code data analysis and transformations from within a Databricks notebook. 
 # MAGIC 
-# MAGIC * If you model is small and fit in a single node, you can use a Single Node cluster with pandas directly
-# MAGIC * If your data grow, no need to re-write the code. Just switch to spark pandas
+# MAGIC * Low-code/no-code 
+# MAGIC * Can be embedded into Databricks notebooks
+# MAGIC * Useful for team members of all skillsets
+# MAGIC * Makes data wrangling and exploration fast and easy
+# MAGIC * Generates python code can be customized and shared
 # MAGIC 
-# MAGIC <div style="float:right ;">
-# MAGIC   <img src="https://databricks.com/fr/wp-content/uploads/2021/09/Pandas-API-on-Upcoming-Apache-Spark-3.2-blog-img-4.png" width="300"/>
-# MAGIC </div>
-# MAGIC 
-# MAGIC 
-# MAGIC One of the known limitations in pandas is that it does not scale with your data volume linearly due to single-machine processing. For example, pandas fails with out-of-memory if it attempts to read a dataset that is larger than the memory available in a single machine.
-# MAGIC 
-# MAGIC 
-# MAGIC Pandas API on Spark overcomes the limitation and scale beyond a single machine, enabling users to work with large datasets by leveraging Spark!
-# MAGIC 
-# MAGIC **Starting with spark 3.2, pandas API are directly part of the spark runtime, no need to import external library!**
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC 
-# MAGIC ## Installing *bamboolib*
-# MAGIC 
-# MAGIC The first step for installing *bamboolib* is to to install the library with `pip`. Run the code cell below to install the *bamboolib* library. 
-# MAGIC 
-# MAGIC This step can be skipped if *bamboolib* is already installed in the workspace or cluster. 
-
-# COMMAND ----------
-
-# MAGIC %pip install bamboolib
+# MAGIC **Bamboolib is supported in Databricks Runtime 11.0 and above.**
 
 # COMMAND ----------
 
@@ -145,6 +123,12 @@ engine_events_df
 
 # COMMAND ----------
 
+#Change the below code to work for Engine Event Data
+engine_events_df = spark.table("<catalog>.<schema>.<table>").toPandas()
+engine_events_df
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### Explore Engine Master data
 # MAGIC 
@@ -153,6 +137,12 @@ engine_events_df
 # MAGIC b. Are there Column with Null Values?  
 # MAGIC c. Do we have columns where we need to standardize data?  
 # MAGIC d. What is the granularity of the data
+
+# COMMAND ----------
+
+#Change the below code to work for Engine Master Data
+engine_master_df = spark.table("<catalog>.<schema>.<table>").toPandas()
+engine_master_df
 
 # COMMAND ----------
 
@@ -167,6 +157,12 @@ engine_events_df
 
 # COMMAND ----------
 
+#Change the below code to work for Engine Faliure Data
+engine_faliure_df = spark.table("<catalog>.<schema>.<table>").toPandas()
+engine_faloure_df
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### Explore Weather data
 # MAGIC 
@@ -175,6 +171,12 @@ engine_events_df
 # MAGIC b. Are there Column with Null Values?  
 # MAGIC c. Do we have columns where we need to standardize data?  
 # MAGIC d. What is the granularity of the data
+
+# COMMAND ----------
+
+#Change the below code to work for Engine Weather Data
+engine_weather_df = spark.table("<catalog>.<schema>.<table>").toPandas()
+engine_weather_df
 
 # COMMAND ----------
 
