@@ -155,7 +155,7 @@ bam
 # COMMAND ----------
 
 #Copy Code to load engine event data
-engine_events_df = spark.table("himanshu_gupta_demos.hackathon.engine_events").toPandas()
+engine_events_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 engine_events_df
 
 # COMMAND ----------
@@ -168,36 +168,7 @@ engine_events_df
 
 # COMMAND ----------
 
-import pandas as pd; import numpy as np
-# Step: Manipulate strings of 'intake_temperature' via Find 'null' and Replace with ''
-engine_events_df["intake_temperature"] = engine_events_df["intake_temperature"].str.replace('null', '', regex=False)
-
-# Step: Manipulate strings of 'oil_temperature' via Find 'null' and Replace with ''
-engine_events_df["oil_temperature"] = engine_events_df["oil_temperature"].str.replace('null', '', regex=False)
-
-# Step: Manipulate strings of 'exhaust_temperature' via Find 'null' and Replace with ''
-engine_events_df["exhaust_temperature"] = engine_events_df["exhaust_temperature"].str.replace('null', '', regex=False)
-
-# Step: Manipulate strings of 'fault_code' via Find 'null' and Replace with ''
-engine_events_df["fault_code"] = engine_events_df["fault_code"].str.replace('null', '', regex=False)
-
-# Step: Change data type of oil_temperature to Float
-engine_events_df['oil_temperature'] = pd.to_numeric(engine_events_df['oil_temperature'], downcast='float', errors='coerce')
-
-# Step: Change data type of exhaust_temperature to Float
-engine_events_df['exhaust_temperature'] = pd.to_numeric(engine_events_df['exhaust_temperature'], downcast='float', errors='coerce')
-
-# Step: Change data type of intake_temperature to Float
-engine_events_df['intake_temperature'] = pd.to_numeric(engine_events_df['intake_temperature'], downcast='float', errors='coerce')
-
-# Step: Replace missing values
-engine_events_df[['oil_temperature']] = engine_events_df[['oil_temperature']].fillna(engine_events_df[['oil_temperature']].mean())
-
-# Step: Replace missing values
-engine_events_df[['exhaust_temperature']] = engine_events_df[['exhaust_temperature']].fillna(engine_events_df[['exhaust_temperature']].mean())
-
-# Step: Replace missing values
-engine_events_df[['intake_temperature']] = engine_events_df[['intake_temperature']].fillna(engine_events_df[['intake_temperature']].mean())
+#Paste Auto-Generated Code to reproduce the transformations later
 
 
 
@@ -214,7 +185,7 @@ engine_events_df[['intake_temperature']] = engine_events_df[['intake_temperature
 # COMMAND ----------
 
 #Copy Code to load uom conversion data
-uom_conversion_df = spark.table("himanshu_gupta_demos.hackathon.uom_conversion").toPandas()
+uom_conversion_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 uom_conversion_df
 
 # COMMAND ----------
@@ -283,18 +254,7 @@ uom_conversion_df
 
 # COMMAND ----------
 
-import pandas as pd; import numpy as np
-# Step: Inner Join with engine_events_df where uom=altitude_uom
-engine_event_standard_df = pd.merge(uom_conversion_df, engine_events_df, how='inner', left_on=['uom'], right_on=['altitude_uom'])
-
-# Step: Create new column 'altitude_feet' from formula 'Conversion_rate_feet*altitude'
-engine_event_standard_df['altitude_feet'] = engine_event_standard_df['Conversion_rate_feet']*engine_event_standard_df['altitude']
-
-# Step: Drop columns
-engine_event_standard_df = engine_event_standard_df.drop(columns=['uom', 'Conversion_rate_feet', 'altitude'])
-
-# Step: Drop columns
-engine_event_standard_df = engine_event_standard_df.drop(columns=['altitude_uom'])
+#Paste Auto-Generated Code to reproduce the transformations later
 
 
 
@@ -307,7 +267,7 @@ engine_event_standard_df = engine_event_standard_df.drop(columns=['altitude_uom'
 # COMMAND ----------
 
 engine_event_standard_df_spark = spark.createDataFrame(engine_event_standard_df)
-engine_event_standard_df_spark.write.mode("overwrite").format("delta").saveAsTable("himanshu_gupta_demos.hackathon.engine_event_silver")
+engine_event_standard_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_name>.<database_name>.<table_name>")
 
 # COMMAND ----------
 
@@ -317,39 +277,18 @@ engine_event_standard_df_spark.write.mode("overwrite").format("delta").saveAsTab
 # COMMAND ----------
 
 #Copy Code to load engine event data
-engine_df = spark.table("himanshu_gupta_demos.hackathon.engine").toPandas()
+engine_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 engine_df
 
 # COMMAND ----------
 
-import pandas as pd; import numpy as np
-# Step: Change data type of build_date to Datetime
-engine_df['build_date'] = pd.to_datetime(engine_df['build_date'], infer_datetime_format=True)
-
-# Step: Change data type of ship_date to Datetime
-engine_df['ship_date'] = pd.to_datetime(engine_df['ship_date'], infer_datetime_format=True)
-
-# Step: Change data type of engine_config to String/Text
-engine_df['engine_config'] = engine_df['engine_config'].astype('string')
-
-# Step: Change data type of user_application to String/Text
-engine_df['user_application'] = engine_df['user_application'].astype('string')
-
-# Step: Manipulate strings of 'inservice_date' via Find 'null' and Replace with ''
-engine_df["inservice_date"] = engine_df["inservice_date"].str.replace('null', '', regex=False)
-
-# Step: Change data type of inservice_date to Datetime
-engine_df['inservice_date'] = pd.to_datetime(engine_df['inservice_date'], infer_datetime_format=True)
-
-# Step: Convert 'user_application' to uppercase
-engine_df['user_application'] = engine_df['user_application'].str.upper()
-
+#Paste Auto-Generated Code to reproduce the transformations later
 
 
 # COMMAND ----------
 
 engine_df_spark = spark.createDataFrame(engine_df)
-engine_df_spark.write.mode("overwrite").format("delta").saveAsTable("himanshu_gupta_demos.hackathon.engine_silver")
+engine_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_name>.<database_name>.<table_name>")
 
 # COMMAND ----------
 
@@ -359,42 +298,18 @@ engine_df_spark.write.mode("overwrite").format("delta").saveAsTable("himanshu_gu
 
 # COMMAND ----------
 
-weather_df = spark.table("himanshu_gupta_demos.hackathon.weather_data").toPandas()
+weather_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 weather_df
 
 # COMMAND ----------
 
-import pandas as pd; import numpy as np
-# Step: Change data type of City to String/Text
-weather_df['City'] = weather_df['City'].astype('string')
-
-# Step: Change data type of Date to Datetime
-weather_df['Date'] = pd.to_datetime(weather_df['Date'], infer_datetime_format=True)
-
-# Step: Change data type of Highs to Integer
-weather_df['Highs'] = pd.to_numeric(weather_df['Highs'], downcast='integer', errors='coerce')
-
-# Step: Manipulate strings of 'Lows' via Find 'M' and Replace with ''
-weather_df["Lows"] = weather_df["Lows"].str.replace('M', '', regex=False)
-
-# Step: Change data type of Lows to Integer
-weather_df['Lows'] = pd.to_numeric(weather_df['Lows'], downcast='integer', errors='coerce')
-
-# Step: Manipulate strings of 'Average' via Find 'M' and Replace with ''
-weather_df["Average"] = weather_df["Average"].str.replace('M', '', regex=False)
-
-# Step: Change data type of Average to Float
-weather_df['Average'] = pd.to_numeric(weather_df['Average'], downcast='float', errors='coerce')
-
-# Step: Drop rows where ((Highs is missing) or (Lows is missing)) or (Average is missing)
-weather_df = weather_df.loc[~(((weather_df['Highs'].isna()) | (weather_df['Lows'].isna())) | (weather_df['Average'].isna()))]
-
+#Paste Auto-Generated Code to reproduce the transformations later
 
 
 # COMMAND ----------
 
 weather_df_spark = spark.createDataFrame(weather_df)
-weather_df_spark.write.mode("overwrite").format("delta").saveAsTable("himanshu_gupta_demos.hackathon.weather_data_silver")
+weather_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_name>.<database_name>.<table_name>")
 
 # COMMAND ----------
 
@@ -404,7 +319,7 @@ weather_df_spark.write.mode("overwrite").format("delta").saveAsTable("himanshu_g
 
 # COMMAND ----------
 
-engine_faliure_df = spark.table("himanshu_gupta_demos.hackathon.engine_faliure").toPandas()
+engine_faliure_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 engine_faliure_df
 
 # COMMAND ----------
@@ -414,10 +329,10 @@ engine_faliure_df
 
 # COMMAND ----------
 
-engine_faliure_df = spark.table("himanshu_gupta_demos.hackathon.engine_faliure").toPandas()
-weather_silver_df = spark.table("himanshu_gupta_demos.hackathon.weather_data_silver").toPandas()
-engine_event_silver_df = spark.table("himanshu_gupta_demos.hackathon.engine_event_silver").toPandas()
-engine_silver_df = spark.table("himanshu_gupta_demos.hackathon.engine_silver").toPandas()
+engine_faliure_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
+weather_silver_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
+engine_event_silver_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
+engine_silver_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 
 # COMMAND ----------
 
@@ -425,45 +340,12 @@ engine_event_silver_df
 
 # COMMAND ----------
 
-import pandas as pd; import numpy as np
-# Step: Change data type of event_timestamp to String/Text
-engine_event_silver_df['event_timestamp'] = engine_event_silver_df['event_timestamp'].dt.strftime('%Y-%m-%d')
-
-# Step: Change data type of event_timestamp to Datetime
-engine_event_silver_df['event_timestamp'] = pd.to_datetime(engine_event_silver_df['event_timestamp'], infer_datetime_format=True)
-
-# Step: Group by and aggregate
-engine_event_agg_df = engine_event_silver_df.groupby(['engine_serial_number', 'event_timestamp', 'location']).agg({**{'event_timestamp': ['size']}, **{'fault_code': ['count']}, **{col: ['mean', 'median', 'min', 'max'] for col in ['rpm', 'oil_temperature', 'exhaust_temperature', 'intake_temperature', 'altitude_feet']}})
-engine_event_agg_df.columns = ['_'.join(multi_index) for multi_index in engine_event_agg_df.columns.ravel()]
-engine_event_agg_df = engine_event_agg_df.reset_index()
-
-# Step: Inner Join with engine_silver_df where engine_serial_number=engine_serial_number
-engine_event_agg_df = pd.merge(engine_event_agg_df, engine_silver_df, how='inner', on=['engine_serial_number'])
-
-# Step: Left Join with weather_silver_df where event_timestamp=Date, location=City
-engine_event_agg_df = pd.merge(engine_event_agg_df, weather_silver_df, how='left', left_on=['event_timestamp', 'location'], right_on=['Date', 'City'])
-
-# Step: Left Join with engine_faliure_df where engine_serial_number=engine_serial_number, event_timestamp=event_timestamp
-engine_event_agg_df = pd.merge(engine_event_agg_df, engine_faliure_df, how='left', on=['engine_serial_number', 'event_timestamp'])
-
-# Step: Drop columns
-engine_event_agg_df = engine_event_agg_df.drop(columns=['City', 'Date'])
-
-# Step: Change data type of Failed to String/Text
-engine_event_agg_df['Failed'] = engine_event_agg_df['Failed'].astype('string')
-
-# Step: Replace missing values
-engine_event_agg_df[['Failed']] = engine_event_agg_df[['Failed']].fillna('0')
-
-# Step: Manipulate strings of 'Failed' via Find '1.0' and Replace with '1'
-engine_event_agg_df["Failed"] = engine_event_agg_df["Failed"].str.replace('1.0', '1', regex=False)
-
-
+#Paste Auto-Generated Code to reproduce the transformations later
 
 # COMMAND ----------
 
 engine_event_agg_df_spark = spark.createDataFrame(engine_event_agg_df)
-engine_event_agg_df_spark.write.mode("overwrite").format("delta").saveAsTable("himanshu_gupta_demos.hackathon.engine_events_gold")
+engine_event_agg_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_name>.<database_name>.<table_name>")
 
 # COMMAND ----------
 
