@@ -14,7 +14,7 @@ Topics Covered:
 - Dashboards
 
 Personas Covered:
-- Citizen Data Scientist, who is a business SME, getting into insights from raw data with low 
+- Citizen Data Scientist, who is a business SME, getting into insights from raw data with low code no code solution
 
 ## Problem Statement
 In this excercise, you will use Databricks Lakehouse platform to go through the whole data science pipeline to solve a business problem and predict engine faliure using synthetically generated telematics data. Dataset used in this excercise except weather data is generated using databricks datagen library https://databrickslabs.github.io/dbldatagen/public_docs/APIDOCS.html.
