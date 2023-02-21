@@ -3,11 +3,11 @@
 # MAGIC 
 # MAGIC # Data Transformation with bamboolib
 # MAGIC 
-# MAGIC In this notebook we're going to perform data transformation on the dataset using features of bamboolib on Databricks.  Data wrangling and transformation requires a lot of time and usually involves many repetitive tasks. While required data transformation tasks depend on the project, there are some common transformations that are used in most of the data analysis projects. bamboolib offers all typical data transformations such as filtering, sorting, selecting or dropping columns, aggregations and joins.
+# MAGIC In this notebook we're going to perform data transformation on the dataset using features of bamboolib on Databricks.  Data wrangling and transformation requires a lot of time and usually involves many repetitive tasks. While required data transformation tasks depend on the project, there are some common transformations that are used in most of the data analysis projects. bamboolib offers all typical data transformations such as filtering, sorting, selecting,  dropping columns, aggregations and joins.
 # MAGIC 
 # MAGIC 
-# MAGIC **Requirements:**
-# MAGIC * This notebook requires minimum **DBR version 11.0** on AWS and Azure and DBR version 11.1 on GCP 
+# MAGIC **Requirements: **
+# MAGIC * This notebook requires minimum **DBR version 11.0** on AWS and Azure and DBR version 11.1 on GCP
 
 # COMMAND ----------
 
@@ -61,7 +61,7 @@ bam
 # MAGIC 1. Enter "Catalog Name"
 # MAGIC 1. Enter "database/schema name"
 # MAGIC 1. Enter "engine events table name"
-# MAGIC 1. For dataframe name, proviate appropriate name to differentiate with other names
+# MAGIC 1. For dataframe name, provide appropriate name to differentiate with other names
 # MAGIC 1. click on "Copy Code" and execute the code in below cell
 # MAGIC 
 # MAGIC Bamboolib supports a wide range of data transformation actions. You can see the whole list in **"Search Actions" dropdown**. In this demo, we are doing to demonstrate the following transformations.
@@ -192,7 +192,7 @@ uom_conversion_df
 
 # MAGIC %md
 # MAGIC 
-# MAGIC ### Standardize altiture data from meters to feet
+# MAGIC ### Standardize altitude data from meters to feet
 # MAGIC 
 # MAGIC <br/>
 # MAGIC 
@@ -250,7 +250,7 @@ uom_conversion_df
 # MAGIC 
 # MAGIC ### Export/Copy Auto-Generated Code
 # MAGIC 
-# MAGIC Exdcute the exported code in the cell below cell to save the state of the changes made to engine event dataframe
+# MAGIC Execute the exported code in the cell below cell to save the state of the changes made to engine event dataframe
 
 # COMMAND ----------
 
