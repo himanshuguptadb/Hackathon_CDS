@@ -21,8 +21,6 @@
 # MAGIC * Useful for team members of all skillsets
 # MAGIC * Makes data wrangling and exploration fast and easy
 # MAGIC * Generates python code can be customized and shared
-# MAGIC 
-# MAGIC **Bamboolib is supported in Databricks Runtime 11.0 and above.**
 
 # COMMAND ----------
 
@@ -78,9 +76,9 @@ engine_events_df
 # MAGIC 
 # MAGIC ### Glimpse Overview
 # MAGIC 
-# MAGIC The first tab is the "Glimpse" overview. You can inspect missing data, data type and number unique values in this view. We can dive into more details by clicking on any of the columns. Let's click on "oil_temperature" column and bamboolib opens and new tab for this column. 
+# MAGIC The first tab is the "Glimpse" overview. You can inspect missing data, data type and number unique values in this view. We can dive into more details by clicking on any of the columns. Let's click on "oil_temperature" column and bamboolib opens a new tab for this column. 
 # MAGIC 
-# MAGIC In the next tab we have bi-variate plots. Bi-variate plots are great for showing the relationship between two variables in the dataset. These plots, permit us to see at a glance, the degree at the pattern of relationship between two variables. In this example, we see the bi-variate plots between the columns that we selected. In this case it is oil_temperature. And also another column that we can compare with. Let's select "intake_temperature" for example. Bamboolibs shows graphs/tables for the relationship between these two variables. 
+# MAGIC One of the tab we have is bi-variate plots. Bi-variate plots are great for showing the relationship between two variables in the dataset. These plots, permit us to see at a glance, the degree at the pattern of relationship between two variables. In this example, we see the bi-variate plots between the columns that we selected. In this case it is oil_temperature. And also another column that we can compare with. Let's select "intake_temperature" for example. Bamboolibs shows graphs/tables for the relationship between these two variables. 
 # MAGIC 
 # MAGIC The last two tabs are showing information about each column.
 # MAGIC 
@@ -90,12 +88,12 @@ engine_events_df
 # MAGIC Another important metric in data exploration is the predictive power score. The predictive power score or PPS is an asymmetric data type agnostic score that can detect linear or non-linear relationship between two columns. The score ranges from zero, which means no predictive power at all, to one, which means perfect predictive power. It can be used as an alternative to the correlation matrix.  
 # MAGIC 
 # MAGIC To view Predictive Power Score; 
-# MAGIC - **Click on Predictors tab.** In the predictors tab. You can see a predictive power score for the selected column compared to other columns in the dataset.  In this example, we are seeing the predictive power scores for "oil_temperature" as you can see. This shows that the "rpm" column has highest predictive score for predicting oil_temperature column. While other columns, for example, location and altitude_uom are not predictive at all because the predictive power is zero. 
+# MAGIC - **Click on Predictors tab.** In the predictors tab. You can see a predictive power score for the selected column compared to other columns in the dataset.  In this example, we are seeing the predictive power scores for "oil_temperature" as you can see. This shows that the "rpm" column has highest predictive score for predicting oil_temperature column. While other columns, for example, location and altitude_uom are not predictive at all because the predictive power is zero. (Depending on how big is your sample, there might be another attribute with higher pps score compared to rpm)
 # MAGIC 
 # MAGIC While you can check predictive power score for a single variable. Sometimes you want to view an overview of the whole predictive power scores for a single dataset.
 # MAGIC 
 # MAGIC To view Predictive Power Scores for all columns in the dataset;
-# MAGIC - **Click Predictor patterns tab**.  You will see a matrix of predictive score between all variables in your dataset. 
+# MAGIC - **Click Predictor patterns tab** (Under Explore data tab).  You will see a matrix of predictive score between all variables in your dataset. 
 # MAGIC - You can click on a cell and it will show you more details about the relationship between the two variables. 
 # MAGIC - You can check density, plot, predictive power plus, and scatterplots to get more details. 
 # MAGIC 
@@ -177,6 +175,13 @@ engine_faloure_df
 #Change the below code to work for Engine Weather Data
 engine_weather_df = spark.table("<catalog>.<schema>.<table>").toPandas()
 engine_weather_df
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Next Steps
+# MAGIC 
+# MAGIC Navigate to **02 - ETL** notebook for transforming the data.
 
 # COMMAND ----------
 

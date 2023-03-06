@@ -5,14 +5,6 @@
 # MAGIC Using Auto ML we can experiment with Machine Learning Models on our Dataset with code base been automatically generated. 
 # MAGIC 
 # MAGIC <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/ML_E2E_Pipeline2.png?raw=true" width="1200">
-# MAGIC 
-# MAGIC <!-- Collect usage data (view). Remove it to disable collection. View README for more details.  -->
-# MAGIC <img width="1px" src="https://www.google-analytics.com/collect?v=1&gtm=GTM-NKQ8TT7&tid=UA-163989034-1&cid=555&aip=1&t=event&ec=field_demos&ea=display&dp=%2F42_field_demos%2Ffeatures%2Fmlops%2F02_auto_ml&dt=MLOPS">
-# MAGIC <!-- [metadata={"description":"MLOps end2end workflow: Auto-ML notebook",
-# MAGIC  "authors":["quentin.ambard@databricks.com"],
-# MAGIC  "db_resources":{},
-# MAGIC   "search_tags":{"vertical": "retail", "step": "Data Engineering", "components": ["auto-ml"]},
-# MAGIC                  "canonicalUrl": {"AWS": "", "Azure": "", "GCP": ""}}] -->
 
 # COMMAND ----------
 
@@ -68,3 +60,10 @@
 # MAGIC <img src="https://github.com/himanshuguptadb/Hackathon_CDS/blob/master/Images/model lifecycle.png?raw=true" width = "600"/>  
 # MAGIC 
 # MAGIC ### Your model is now ready to be deployed for realtime or batch inference.
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Next Steps
+# MAGIC 
+# MAGIC Navigate to **04 - Model Deployment** to deploy the model for real time inference.

@@ -3,11 +3,7 @@
 # MAGIC 
 # MAGIC # Data Transformation with bamboolib
 # MAGIC 
-# MAGIC In this notebook we're going to perform data transformation on the dataset using features of bamboolib on Databricks.  Data wrangling and transformation requires a lot of time and usually involves many repetitive tasks. While required data transformation tasks depend on the project, there are some common transformations that are used in most of the data analysis projects. bamboolib offers all typical data transformations such as filtering, sorting, selecting or dropping columns, aggregations and joins.
-# MAGIC 
-# MAGIC 
-# MAGIC **Requirements:**
-# MAGIC * This notebook requires minimum **DBR version 11.0** on AWS and Azure and DBR version 11.1 on GCP 
+# MAGIC In this notebook we're going to perform data transformation on the dataset using features of bamboolib on Databricks.  Data wrangling and transformation requires a lot of time and usually involves many repetitive tasks. While required data transformation tasks depend on the project, there are some common transformations that are used in most of the data analysis projects. bamboolib offers all typical data transformations such as filtering, sorting, selecting,  dropping columns, aggregations and joins.
 
 # COMMAND ----------
 
@@ -61,7 +57,7 @@ bam
 # MAGIC 1. Enter "Catalog Name"
 # MAGIC 1. Enter "database/schema name"
 # MAGIC 1. Enter "engine events table name"
-# MAGIC 1. For dataframe name, proviate appropriate name to differentiate with other names
+# MAGIC 1. For dataframe name, provide appropriate name to differentiate with other names
 # MAGIC 1. click on "Copy Code" and execute the code in below cell
 # MAGIC 
 # MAGIC Bamboolib supports a wide range of data transformation actions. You can see the whole list in **"Search Actions" dropdown**. In this demo, we are doing to demonstrate the following transformations.
@@ -71,10 +67,10 @@ bam
 # MAGIC 
 # MAGIC ### 1 - Replace null string from data
 # MAGIC 
-# MAGIC Another common transformation is missing data handling. In the Fault_Code column, there are rows with missing values as "null". Let's replace these missing values with "". 
+# MAGIC Bamboolib provides a quick action to replace text strings like null from data. In the intake_temperature column, there are rows with missing values as "null". Let's replace these missing values with "". 
 # MAGIC 
 # MAGIC 
-# MAGIC 1. In the search actions dropdown, search for **"Find and replace missing values"** and click on action. 
+# MAGIC 1. In the search actions dropdown, search for **"Find and replace text in column"** and click on action. 
 # MAGIC 
 # MAGIC 1. On the right panel, select *intake_temperature* in column list.
 # MAGIC 
@@ -94,7 +90,7 @@ bam
 # MAGIC 
 # MAGIC ### 2 - Change Column Data Type
 # MAGIC 
-# MAGIC Bamboolib provides a quick action to transform data types. Let's covert *Survived* column to boolean type and convert *intake_temperature* to float type.
+# MAGIC Bamboolib provides a quick action to transform data types. Let's covert *intake_temperature* to float type.
 # MAGIC 
 # MAGIC To change data type;
 # MAGIC 
@@ -116,14 +112,14 @@ bam
 # MAGIC 
 # MAGIC ### 3 - Impute Missing Data
 # MAGIC 
-# MAGIC Another common transformation is missing data handling. In the *oil_temperature* column, there are some missing values. Let's replace these missing values with mean value. 
+# MAGIC Another common transformation is missing data handling. In the *intake_temperature* column, there are some missing values. Let's replace these missing values with mean value. 
 # MAGIC 
 # MAGIC 
 # MAGIC 1. In the search actions dropdown, search for **"Missing"**. There are couple of actions that you can use for missing values. You can drop missing values, find and replace them or drop columns with missing values.
 # MAGIC 
 # MAGIC 1. Select **"Find and replace missing values"** action.
 # MAGIC 
-# MAGIC 1. On the right panel, select column "oil_temperature" in "Replace missing values in" dropdown.
+# MAGIC 1. On the right panel, select column "intake_temperature" in "Replace missing values in" dropdown.
 # MAGIC 
 # MAGIC 1. Select **"Mean of Column"** in the "With" dropdown.
 # MAGIC 
@@ -143,6 +139,8 @@ bam
 # MAGIC 1. In the search actions dropdown, search for **"Filter rows"** and click on action. 
 # MAGIC 
 # MAGIC 1. On the right panel, select *exhaust_temperature* in column list.
+# MAGIC 
+# MAGIC 1. Select "drop rows"
 # MAGIC 
 # MAGIC 1. Select "is missing" from the condition list.
 # MAGIC 
@@ -164,7 +162,7 @@ engine_events_df
 # MAGIC 
 # MAGIC ### Export/Copy Auto-Generated Code
 # MAGIC 
-# MAGIC Exdcute the exported code in the cell below cell to save the state of the changes made to engine event dataframe
+# MAGIC Execute the exported code in the cell below cell to save the state of the changes made to engine event dataframe
 
 # COMMAND ----------
 
@@ -192,7 +190,7 @@ uom_conversion_df
 
 # MAGIC %md
 # MAGIC 
-# MAGIC ### Standardize altiture data from meters to feet
+# MAGIC ### Standardize altitude data from meters to feet
 # MAGIC 
 # MAGIC <br/>
 # MAGIC 
@@ -203,6 +201,8 @@ uom_conversion_df
 # MAGIC To join data;
 # MAGIC 
 # MAGIC 1. In the search actions dropdown, search for **"Join / Merge dataframes"** and click on action. 
+# MAGIC 
+# MAGIC 1. Select join type "Inner join"
 # MAGIC 
 # MAGIC 1. In between the dataframes, uom_conversion dataframe is already selected. Choose engine_event_df as the other dataframe
 # MAGIC 
@@ -250,7 +250,7 @@ uom_conversion_df
 # MAGIC 
 # MAGIC ### Export/Copy Auto-Generated Code
 # MAGIC 
-# MAGIC Exdcute the exported code in the cell below cell to save the state of the changes made to engine event dataframe
+# MAGIC Execute the exported code in the cell below cell to save the state of the changes made to engine event dataframe
 
 # COMMAND ----------
 
@@ -262,21 +262,23 @@ uom_conversion_df
 
 # MAGIC %md
 # MAGIC 
-# MAGIC ### Save cleaned engine event data as silver table. 
+# MAGIC ### Save cleaned engine event data as silver table.
+# MAGIC Save the transformed engine event data as a table. This cleaned table can now be used in visualizations, feature engineering etc..
 
 # COMMAND ----------
 
-engine_event_standard_df_spark = spark.createDataFrame(engine_event_standard_df)
+engine_event_standard_df_spark = spark.createDataFrame(<enter the final engine event dataframe name>)
 engine_event_standard_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_name>.<database_name>.<table_name>")
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC ## Data Transformation Engine data
+# MAGIC 
+# MAGIC Use the information you gathered duing EDA to clean and transform engine data. 
 
 # COMMAND ----------
 
-#Copy Code to load engine event data
 engine_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 engine_df
 
@@ -287,7 +289,7 @@ engine_df
 
 # COMMAND ----------
 
-engine_df_spark = spark.createDataFrame(engine_df)
+engine_df_spark = spark.createDataFrame(<enter the final engine dataframe name>)
 engine_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_name>.<database_name>.<table_name>")
 
 # COMMAND ----------
@@ -295,6 +297,8 @@ engine_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_na
 # MAGIC %md
 # MAGIC 
 # MAGIC ## Data Transformation weather data
+# MAGIC 
+# MAGIC Use the information you gathered duing EDA to clean and transform weather data. 
 
 # COMMAND ----------
 
@@ -308,24 +312,37 @@ weather_df
 
 # COMMAND ----------
 
-weather_df_spark = spark.createDataFrame(weather_df)
+weather_df_spark = spark.createDataFrame(<enter the final weather dataframe name>)
 weather_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_name>.<database_name>.<table_name>")
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC 
-# MAGIC ## Data Transformation Engine Faliure data
+# MAGIC ## Data Transformation Engine Failure data
+# MAGIC 
+# MAGIC Use the information you gathered duing EDA to clean and transform engine failure data. 
 
 # COMMAND ----------
 
-engine_faliure_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
-engine_faliure_df
+engine_failure_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
+engine_failure_df
+
+# COMMAND ----------
+
+#Paste Auto-Generated Code to reproduce the transformations later
+
+# COMMAND ----------
+
+engine_failure_df_spark = spark.createDataFrame(<enter the final engine faliure dataframe name>)
+engine_failure_df_spark.write.mode("overwrite").format("delta").saveAsTable("<catalog_name>.<database_name>.<table_name>")
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC ## Silver Layer to Gold Layer
+# MAGIC 
+# MAGIC Create one or mutiple aggregate/feature table combining all the available data which can be used for visualizations or building machine learning models.
 
 # COMMAND ----------
 
@@ -349,4 +366,7 @@ engine_event_agg_df_spark.write.mode("overwrite").format("delta").saveAsTable("<
 
 # COMMAND ----------
 
-engine_event_agg_df
+# MAGIC %md
+# MAGIC ## Next Steps
+# MAGIC 
+# MAGIC Navigate to **03 - Train ML Model** notebook for building a machine learning model
