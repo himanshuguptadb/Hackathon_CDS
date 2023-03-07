@@ -346,8 +346,8 @@ engine_failure_df_spark.write.mode("overwrite").format("delta").saveAsTable("<ca
 
 # COMMAND ----------
 
-engine_faliure_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
-weather_silver_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
+engine_faliure_silver_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
+weather_data_silver_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 engine_event_silver_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 engine_silver_df = spark.table("<catalog_name>.<database_name>.<table_name>").toPandas()
 
