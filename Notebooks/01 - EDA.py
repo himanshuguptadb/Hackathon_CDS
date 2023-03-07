@@ -156,8 +156,8 @@ engine_master_df
 # COMMAND ----------
 
 #Change the below code to work for Engine Faliure Data
-engine_faliure_df = spark.table("<catalog>.<schema>.<table>").toPandas()
-engine_faloure_df
+engine_failure_df = spark.table("<catalog>.<schema>.<table>").toPandas()
+engine_failure_df
 
 # COMMAND ----------
 
