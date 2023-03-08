@@ -29,7 +29,7 @@
 # MAGIC 
 # MAGIC Auto ML is available in the "Machine Learning" space. All we have to do is start a new Auto-ML experimentation.
 # MAGIC * Select the ML Compute Cluster
-# MAGIC * Slect the ML problem type (Classification, Regression or Forecasting)
+# MAGIC * Select the ML problem type (Classification, Regression or Forecasting)
 # MAGIC * Select the feature table we just created.  
 # MAGIC * Our prediction target is the `failure` column.  
 # MAGIC * Provide appropriate name to the experiment
