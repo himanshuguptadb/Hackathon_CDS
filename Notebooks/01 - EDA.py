@@ -53,7 +53,7 @@ bam
 # MAGIC 1. Enter "Catalog Name"
 # MAGIC 1. Enter "database/schema name"
 # MAGIC 1. Enter "engine events table name"
-# MAGIC 1. For dataframe name, proviate appropriate name to differentiate with other names
+# MAGIC 1. For dataframe name, provide appropriate name to differentiate with other names
 # MAGIC 1. click on "Copy Code" and execute the code in below cell
 # MAGIC 
 # MAGIC 
