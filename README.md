@@ -8,7 +8,6 @@ Topics Covered:
   - EDA
   - ETL
   - Feature Engineering
-- Feature store 
 - AutoML
 - MlFlow
 - Dashboards
